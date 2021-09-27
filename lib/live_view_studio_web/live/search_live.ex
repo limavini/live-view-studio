@@ -15,14 +15,14 @@ defmodule LiveViewStudioWeb.SearchLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Find a Store</h1>
     <div id="search">
       <form id="zip-search" phx-submit="zip-search">
-        <input type="text" name="zip" value="<%= @zip %>"
+        <input type="text" name="zip" value={@zip}
                placeholder="Zip Code"
                autofocus autocomplete="off"
-               <%= if @loading, do: "readonly" %> />
+               readonly={@loading} />
 
         <button type="submit">
           <img src="images/search.svg">

@@ -1,10 +1,11 @@
 <h1>What's On Your Desk?</h1>
 <div id="desks">
 
-  <%= f = form_for @changeset, "#",
-          id: "create-desk",
-          phx_submit: "save",
-          phx_change: "validate" %>
+  <.form let={f} for={@changeset}
+    url="#"
+    id="create-desk"
+    phx-submit="save"
+    phx-change="validate" %>
 
   <%= text_input f, :name, placeholder: "Name" %>
   <%= error_tag f, :name %>
@@ -14,7 +15,7 @@
     (max <%= trunc(@uploads.photo.max_file_size / 1_000_000) %> MB each)
   </div>
 
-  <div class="drop" phx-drop-target="<%= @uploads.photo.ref %>">
+  <div class="drop" phx-drop-target={@uploads.photo.ref}>
     <%= live_file_input @uploads.photo %>
     or drag and drop here
   </div>
@@ -34,11 +35,11 @@
           <%= entry.progress %>%
         </div>
         <div class="bar">
-          <span style="width: <%= entry.progress %>%"></span>
+          <span style={"width: #{entry.progress}%"}></span>
         </div>
       </div>
 
-      <a href="#" phx-click="cancel" phx-value-ref="<%= entry.ref %>">
+      <a href="#" phx-click="cancel" phx-value-ref={entry.ref}>
         &times;
       </a>
 
@@ -51,13 +52,13 @@
   <% end %>
 
   <%= submit "Upload", phx_disable_with: "Uploading..." %>
-</form>
+</.form>
 
 <div id="photos" phx-update="prepend">
   <%= for desk <- @desks do %>
     <%= for {photo_url, index} <- Enum.with_index(desk.photo_urls) do %>
-      <div class="photo" id="<%= desk.id %>-<%= index %>">
-        <img src="<%= photo_url %>">
+      <div class="photo" id={"#{desk.id}-#{index}"}>
+        <img src={photo_url}>
         <div class="name">
           <%= desk.name %> (<%= index + 1 %>)
         </div>

@@ -23,12 +23,12 @@ defmodule LiveViewStudioWeb.InfiniteScrollLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div id="infinite-scroll">
       <h1>Pizza Lovers Timeline</h1>
       <div id="orders" phx-update="append">
         <%= for order <- @orders do %>
-          <div class="order" id="<%= order.id %>">
+          <div class="order" id={order.id}>
             <div class="id">
               <%= order.id %>
             </div>
@@ -49,7 +49,7 @@ defmodule LiveViewStudioWeb.InfiniteScrollLive do
 
       <div id="footer"
            phx-hook="InfiniteScroll"
-           data-page-number="<%= @page %>">
+           data-page-number={@page}>
         <div class="loader">
           Loading More...
         </div>

@@ -18,14 +18,14 @@ defmodule LiveViewStudioWeb.AutocompleteLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Find a Store</h1>
     <div id="search">
       <form id="zip-search" phx-submit="zip-search">
-        <input type="text" name="zip" value="<%= @zip %>"
+        <input type="text" name="zip" value={@zip}
                placeholder="Zip Code"
                autofocus autocomplete="off"
-               <%= if @loading, do: "readonly" %> />
+               readonly={@loading} />
 
         <button type="submit">
           <img src="images/search.svg">
@@ -33,12 +33,12 @@ defmodule LiveViewStudioWeb.AutocompleteLive do
       </form>
 
       <form id="city-search" phx-submit="city-search" phx-change="suggest-city">
-        <input type="text" name="city" value="<%= @city %>"
+        <input type="text" name="city" value={@city}
                placeholder="City"
                autocomplete="off"
                list="matches"
                phx-debounce="1000"
-               <%= if @loading, do: "readonly" %> />
+               readonly={@loading} />
 
         <button type="submit">
           <img src="images/search.svg">
@@ -47,7 +47,7 @@ defmodule LiveViewStudioWeb.AutocompleteLive do
 
       <datalist id="matches">
         <%= for match <- @matches do %>
-          <option value="<%= match %>"><%= match %></option>
+          <option value={match}><%= match %></option>
         <% end %>
       </datalist>
 

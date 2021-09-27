@@ -8,7 +8,7 @@ defmodule LiveViewStudioWeb.QuoteComponent do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div id="quote" class="text-center p-6 border-4 border-dashed border-indigo-600">
       <h2 class="text-2xl mb-2">
         Our Best Deal:

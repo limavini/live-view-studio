@@ -5,12 +5,12 @@ defmodule LiveViewStudioWeb.UnderwaterLive do
     {:ok, socket}
   end
 
-  def handle_params(params, _url, socket) do
+  def handle_params(_params, _url, socket) do
     {:noreply, socket}
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Earth Is Super Watery</h1>
     <div id="underwater">
       <%= live_patch "🤿 Look Underwater 👀",
@@ -18,8 +18,7 @@ defmodule LiveViewStudioWeb.UnderwaterLive do
             class: "button" %>
 
       <%= if @live_action == :show_modal do %>
-        <%= live_modal @socket,
-              LiveViewStudioWeb.CreaturesComponent,
+        <%= live_modal LiveViewStudioWeb.CreaturesComponent,
               return_to: Routes.live_path(@socket, __MODULE__),
               title: "Sea Creatures" %>
       <% end %>

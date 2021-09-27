@@ -12,13 +12,13 @@ defmodule LiveViewStudioWeb.KeyEventsLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Juggling Key Events</h1>
     <div id="key-events" phx-window-keyup="update">
-      <img src="/images/juggling/<%= Enum.at(@images, @current) %>">
+      <img src={"/images/juggling/#{Enum.at(@images, @current)}"}>
       <div class="status">
         <%= Enum.at(@images, @current) %>
-        <input type="number" value="<%= @current %>"
+        <input type="number" value={@current}
                phx-keyup="set-current"
                phx-key="Enter" />
         <div>

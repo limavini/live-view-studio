@@ -16,15 +16,15 @@ defmodule LiveViewStudioWeb.MapLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Nearby Incidents</h1>
     <div id="mapping">
       <div class="sidebar">
         <%= for incident <- @incidents do %>
           <div class="incident
-                <%= if @selected_incident == incident, do: 'selected' %>"
-              phx-click="select-incident"
-              phx-value-id="<%= incident.id %>">
+               selected={@selected_incident == incident}
+               phx-click="select-incident"
+               phx-value-id={incident.id}>
             <%= incident.description %>
           </div>
         <% end %>

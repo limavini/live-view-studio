@@ -32,7 +32,7 @@ defmodule LiveViewStudioWeb.ServersLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Servers</h1>
     <div id="servers">
       <div class="sidebar">
@@ -54,13 +54,12 @@ defmodule LiveViewStudioWeb.ServersLive do
       <div class="main">
         <div class="wrapper">
           <%= if @live_action == :new do %>
-            <%= live_modal @socket,
-                    LiveViewStudioWeb.ServerFormComponent,
+            <%= live_modal LiveViewStudioWeb.ServerFormComponent,
                     id: :new,
                     title: "Add New Server",
                     return_to: Routes.live_path(@socket, __MODULE__) %>
           <% else %>
-            <%= live_component @socket, LiveViewStudioWeb.ServerComponent,
+            <%= live_component LiveViewStudioWeb.ServerComponent,
                              id: @selected_server.id,
                              selected_server: @selected_server %>
           <% end %>
@@ -108,8 +107,8 @@ defmodule LiveViewStudioWeb.ServersLive do
   defp link_body(server) do
     assigns = %{name: server.name, status: server.status}
 
-    ~L"""
-    <span class="status <%= @status %>"></span>
+    ~H"""
+    <span class={"status #{@status}"}></span>
     <img src="/images/server.svg">
     <%= @name %>
     """

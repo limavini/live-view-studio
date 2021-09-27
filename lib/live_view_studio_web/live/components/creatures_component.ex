@@ -2,7 +2,7 @@ defmodule LiveViewStudioWeb.CreaturesComponent do
   use LiveViewStudioWeb, :live_component
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div>
       <h2><%= @title %></h2>
       <div class="creatures">

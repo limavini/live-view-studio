@@ -12,24 +12,24 @@ defmodule LiveViewStudioWeb.SandboxCalculatorComponent do
   # end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <form id="calculator"
           phx-change="calculate"
-          phx-target="<%= @myself %>"
+          phx-target={@myself}
           phx-submit="get-quote">
       <div class="field">
         <label for="length">Length:</label>
-        <input type="number" name="length" value="<%= @length %>" />
+        <input type="number" name="length" value={@length} />
         <span class="unit">feet</span>
       </div>
       <div class="field">
         <label for="length">Width:</label>
-        <input type="number" name="width" value="<%= @width %>" />
+        <input type="number" name="width" value={@width} />
         <span class="unit">feet</span>
       </div>
       <div class="field">
         <label for="length">Depth:</label>
-        <input type="number" name="depth" value="<%= @depth %>" />
+        <input type="number" name="depth" value={@depth} />
         <span class="unit">inches</span>
       </div>
       <div class="weight">

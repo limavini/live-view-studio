@@ -10,7 +10,7 @@ defmodule LiveViewStudioWeb.LicenseLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Team License</h1>
     <div id="license">
       <div class="card">
@@ -25,7 +25,7 @@ defmodule LiveViewStudioWeb.LicenseLive do
 
           <form id="update-seats" phx-change="update">
             <input type="range" min="1" max="10"
-                  name="seats" value="<%= @seats %>" />
+                  name="seats" value={@seats} />
           </form>
 
           <div id="amount" class="amount">

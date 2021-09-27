@@ -6,7 +6,7 @@ defmodule LiveViewStudioWeb.TopSecretLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Top Secret</h1>
     <div id="top-secret">
       <img src="images/spy.svg">

@@ -15,7 +15,7 @@ defmodule LiveViewStudioWeb.FilterLive do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Daily Boat Rentals</h1>
     <div id="filter">
       <form id="change-filter" phx-change="filter">
@@ -34,8 +34,8 @@ defmodule LiveViewStudioWeb.FilterLive do
 
       <div class="boats">
         <%= for boat <- @boats do %>
-          <div class="card" id="boat-<%= boat.id %>">
-            <img src="<%= boat.image %>">
+          <div class="card" id={"boat-#{boat.id}"}>
+            <img src={boat.image}>
             <div class="content">
               <div class="model">
                 <%= boat.model %>
@@ -66,11 +66,11 @@ defmodule LiveViewStudioWeb.FilterLive do
   defp price_checkbox(assigns) do
     assigns = Enum.into(assigns, %{})
 
-    ~L"""
-    <input type="checkbox" id="<%= @price %>"
-           name="prices[]" value="<%= @price %>"
-           <%= if @checked, do: "checked" %>/>
-    <label for="<%= @price %>"><%= @price %></label>
+    ~H"""
+    <input type="checkbox" id={@price}
+           name="prices[]" value={@price}
+           checked={@checked} />
+    <label for={@price}><%= @price %></label>
     """
   end
 

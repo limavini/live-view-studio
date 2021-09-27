@@ -2,7 +2,7 @@ defmodule LiveViewStudioWeb.HeaderComponent do
   use LiveViewStudioWeb, :live_component
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1 class="mb-2">
       <%= @title %>
     </h1>

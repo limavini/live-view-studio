@@ -2,17 +2,17 @@ defmodule LiveViewStudioWeb.ModalComponent do
   use LiveViewStudioWeb, :live_component
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div class="phx-modal"
          phx-window-keydown="close"
          phx-key="escape"
          phx-capture-click="close"
-         phx-target="<%= @myself %>">
+         phx-target={@myself}>
       <div class="phx-modal-content">
         <%= live_patch raw("&times;"),
               to: @return_to,
               class: "phx-modal-close" %>
-        <%= live_component @socket, @component, @opts %>
+        <%= live_component @component, @opts %>
       </div>
     </div>
     """

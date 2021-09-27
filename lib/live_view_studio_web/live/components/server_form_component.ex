@@ -11,13 +11,14 @@ defmodule LiveViewStudioWeb.ServerFormComponent do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
+    <div>
     <h2><%= @title %></h2>
 
-    <%= f = form_for @changeset, "#",
-              phx_submit: "save",
-              phx_change: "validate",
-              phx_target: @myself %>
+    <.form let={f} for={@changeset} url="#"
+              phx-submit="save"
+              phx-change="validate"
+              phx-target={@myself}>
       <div class="field">
         <%= label f , :name %>
         <%= text_input f, :name,
@@ -55,7 +56,8 @@ defmodule LiveViewStudioWeb.ServerFormComponent do
       <%= live_patch "Cancel",
             to: @return_to,
             class: "cancel" %>
-      </form>
+      </.form>
+    </div>
     """
   end
 

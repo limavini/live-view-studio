@@ -4,15 +4,15 @@ defmodule LiveViewStudioWeb.ServerComponent do
   alias LiveViewStudio.Servers
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div class="card">
       <div class="header">
         <h2><%= @selected_server.name %></h2>
         <button
-          class="<%= @selected_server.status %>"
+          class={@selected_server.status}
           phx-click="toggle-status"
-          phx-value-id="<%= @selected_server.id %>"
-          phx-target="<%= @myself %>"
+          phx-value-id={@selected_server.id}
+          phx-target={@myself}
           phx-disable-with="Saving...">
           <%= @selected_server.status %>
         </button>

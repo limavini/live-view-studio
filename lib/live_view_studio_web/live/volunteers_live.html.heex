@@ -1,17 +1,14 @@
-<%= live_component @socket,
-                   LiveViewStudioWeb.HeaderComponent,
+<%= live_component LiveViewStudioWeb.HeaderComponent,
                    title: "Volunteer Check-In",
                    subtitle: @recent_activity %>
 
 <div id="checkin">
-  <%= live_component @socket,
-                     LiveViewStudioWeb.VolunteerFormComponent,
+  <%= live_component LiveViewStudioWeb.VolunteerFormComponent,
                      id: :new %>
 
   <div id="volunteers" phx-update="prepend">
     <%= for volunteer <- @volunteers do %>
-      <%= live_component @socket,
-                         LiveViewStudioWeb.VolunteerComponent,
+      <%= live_component LiveViewStudioWeb.VolunteerComponent,
                          volunteer: volunteer,
                          id: volunteer.id  %>
     <% end %>
