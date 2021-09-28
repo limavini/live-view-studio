@@ -2,7 +2,6 @@
   <h1>Live Register</h1>
   <.form let={f} for={@changeset}
     url={Routes.user_registration_path(@socket, :create)}
-    id="create-desk"
     phx-submit="save"
     phx-change="validate"
     phx-trigger-action={@trigger_submit} %>
