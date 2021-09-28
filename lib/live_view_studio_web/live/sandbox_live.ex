@@ -18,10 +18,11 @@ defmodule LiveViewStudioWeb.SandboxLive do
                          coupon: 10.0 %>
 
       <%= if @weight do %>
-        <%= live_component QuoteComponent,
-                          material: "sand",
-                          weight: @weight,
-                          price: @price %>
+        <QuoteComponent.quote
+          material="sand"
+          weight={@weight}
+          price={@price}
+          hrs_until_expires="24" />
       <% end %>
     </div>
     """

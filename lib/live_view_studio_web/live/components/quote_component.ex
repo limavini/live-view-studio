@@ -3,11 +3,7 @@ defmodule LiveViewStudioWeb.QuoteComponent do
 
   import Number.Currency
 
-  def mount(socket) do
-    {:ok, assign(socket, hrs_until_expires: 24)}
-  end
-
-  def render(assigns) do
+  def quote(assigns) do
     ~H"""
     <div id="quote" class="text-center p-6 border-4 border-dashed border-indigo-600">
       <h2 class="text-2xl mb-2">

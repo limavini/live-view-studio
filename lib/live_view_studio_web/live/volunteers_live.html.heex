@@ -1,6 +1,6 @@
-<%= live_component LiveViewStudioWeb.HeaderComponent,
-                   title: "Volunteer Check-In",
-                   subtitle: @recent_activity %>
+<LiveViewStudioWeb.HeaderComponent.header
+                   title="Volunteer Check-In"
+                   subtitle={@recent_activity} />
 
 <div id="checkin">
   <%= live_component LiveViewStudioWeb.VolunteerFormComponent,

@@ -1,7 +1,7 @@
 defmodule LiveViewStudioWeb.HeaderComponent do
-  use LiveViewStudioWeb, :live_component
+  use Phoenix.Component
 
-  def render(assigns) do
+  def header(assigns) do
     ~H"""
     <h1 class="mb-2">
       <%= @title %>
