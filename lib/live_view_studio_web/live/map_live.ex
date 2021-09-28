@@ -21,7 +21,7 @@ defmodule LiveViewStudioWeb.MapLive do
     <div id="mapping">
       <div class="sidebar">
         <%= for incident <- @incidents do %>
-          <div class="incident
+          <div class="incident"
                selected={@selected_incident == incident}
                phx-click="select-incident"
                phx-value-id={incident.id}>
