@@ -10,7 +10,8 @@ defmodule LiveViewStudioWeb.QuoteComponentTest do
       material: "sand",
       weight: 2.0,
       price: 4.0,
-      hrs_until_expires: "24"
+      hrs_until_expires: "24",
+      __changed__: %{}
     ]
 
     html = render_component(&QuoteComponent.quote/1, assigns)

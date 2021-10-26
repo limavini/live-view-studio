@@ -4,6 +4,8 @@ defmodule LiveViewStudioWeb.QuoteComponent do
   import Number.Currency
 
   def quote(assigns) do
+    assigns = assign_new(assigns, :hrs_until_expires, fn -> 24 end)
+
     ~H"""
     <div id="quote" class="text-center p-6 border-4 border-dashed border-indigo-600">
       <h2 class="text-2xl mb-2">

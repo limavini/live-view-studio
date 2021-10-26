@@ -13,16 +13,20 @@ defmodule LiveViewStudioWeb.SandboxLive do
     <h1>Build A Sandbox</h1>
 
     <div id="sandbox">
-      <%= live_component SandboxCalculatorComponent,
+      <%#= live_component SandboxCalculatorComponent,
                          id: 1,
                          coupon: 10.0 %>
+
+      <.live_component module={SandboxCalculatorComponent}
+                       id="1"
+                       coupon="10.00" />
 
       <%= if @weight do %>
         <QuoteComponent.quote
           material="sand"
           weight={@weight}
           price={@price}
-          hrs_until_expires="24" />
+          hrs_until_expires="12" />
       <% end %>
     </div>
     """
