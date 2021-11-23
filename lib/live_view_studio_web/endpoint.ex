@@ -10,10 +10,6 @@ defmodule LiveViewStudioWeb.Endpoint do
     signing_salt: "82iEUuqd"
   ]
 
-  socket "/socket", LiveViewStudioWeb.UserSocket,
-    websocket: true,
-    longpoll: false
-
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -24,7 +20,7 @@ defmodule LiveViewStudioWeb.Endpoint do
     at: "/",
     from: :live_view_studio,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt uploads)
+    only: ~w(assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
