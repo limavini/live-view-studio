@@ -5,8 +5,8 @@ defmodule LiveViewStudioWeb do
 
   This can be used in your application as:
 
-      use LiveViewStudioWeb, :controller
-      use LiveViewStudioWeb, :view
+      use MyAppWeb, :controller
+      use MyAppWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -47,9 +47,9 @@ defmodule LiveViewStudioWeb do
       use Phoenix.LiveView,
         layout: {LiveViewStudioWeb.LayoutView, "live.html"}
 
-      import LiveViewStudioWeb.LiveHelpers
-
       unquote(view_helpers())
+
+      import LiveViewStudioWeb.LiveHelpers
     end
   end
 
@@ -83,7 +83,7 @@ defmodule LiveViewStudioWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      # Import LiveView helpers (live_render, live_component, live_patch, etc)
+      # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers
 
       # Import basic rendering functionality (render, render_layout, etc)

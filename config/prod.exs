@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
@@ -21,15 +21,15 @@ config :logger, level: :info
 # To get SSL working, you will need to add the `https` key
 # to the previous section and set your `:url` port to 443:
 #
-#     config :live_view_studio, LiveViewStudioWeb.Endpoint,
-#       ...
+#     config :my_app, MyAppWeb.Endpoint,
+#       ...,
 #       url: [host: "example.com", port: 443],
 #       https: [
+#         ...,
 #         port: 443,
 #         cipher_suite: :strong,
 #         keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
-#         certfile: System.get_env("SOME_APP_SSL_CERT_PATH"),
-#         transport_options: [socket_opts: [:inet6]]
+#         certfile: System.get_env("SOME_APP_SSL_CERT_PATH")
 #       ]
 #
 # The `cipher_suite` is set to `:strong` to support only the
@@ -45,11 +45,7 @@ config :logger, level: :info
 # We also recommend setting `force_ssl` in your endpoint, ensuring
 # no data is ever sent via http, always redirecting to https:
 #
-#     config :live_view_studio, LiveViewStudioWeb.Endpoint,
+#     config :my_app, MyAppWeb.Endpoint,
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
-
-# Finally import the config/prod.secret.exs which loads secrets
-# and configuration from environment variables.
-import_config "prod.secret.exs"
