@@ -18,11 +18,11 @@ defmodule LiveViewStudioWeb.LicenseLive do
             <img src="images/license.svg">
             <span>
               Your license is currently for
-              <strong><%= @seats %></strong> seats.
+              <strong><%= @seats %></strong> <%= ngettext("seat", "seats", @seats) %>.
             </span>
           </div>
           <form phx-change="update">
-            <input type="range" min="1" max="10" name="seats" value="#{@seats}" />
+            <input type="range" min="1" max="10" name="seats" value={@seats} />
           </form>
           <div class="amount">
             <%= number_to_currency(@amount) %>
