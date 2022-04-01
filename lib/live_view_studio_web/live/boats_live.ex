@@ -3,14 +3,23 @@ defmodule LiveViewStudioWeb.BoatsLive do
   alias LiveViewStudio.Boats
 
   def mount(_params, _session, socket) do
-    socket = assign(socket, boats: Boats.list_boats(), type: "", prices: [])
+    socket = initial_assigns(socket)
     {:ok, socket, temporary_assigns: [boats: []]}
+  end
+
+  defp initial_assigns(socket) do
+    assign(socket, boats: Boats.list_boats(), type: "", prices: [])
   end
 
   def handle_event("filter", %{"prices" => prices, "type" => type}, socket) do
     params = [prices: prices, type: type]
     boats = Boats.list_boats(params)
     socket = assign(socket, params ++ [boats: boats])
+    {:noreply, socket}
+  end
+
+  def handle_event("clear", _, socket) do
+    socket = initial_assigns(socket)
     {:noreply, socket}
   end
 
@@ -29,6 +38,7 @@ defmodule LiveViewStudioWeb.BoatsLive do
               <%= price_checkbox(price: price, checked: price in @prices) %>
             <% end %>
           </div>
+          <a href="#" phx-click="clear">Clear All</a>
         </div>
       </form>
 
