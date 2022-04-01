@@ -3,21 +3,35 @@ defmodule LiveViewStudioWeb.BoatsLive do
   alias LiveViewStudio.Boats
 
   def mount(_params, _session, socket) do
-    socket = assign(socket, boats: Boats.list_boats(), type: "")
-    {:ok, socket}
+    socket = assign(socket, boats: Boats.list_boats(), type: "", prices: [])
+    {:ok, socket, temporary_assigns: [boats: []]}
+  end
+
+  def handle_event("filter", %{"prices" => prices, "type" => type}, socket) do
+    params = [prices: prices, type: type]
+    boats = Boats.list_boats(params)
+    socket = assign(socket, params ++ [boats: boats])
+    {:noreply, socket}
   end
 
   def render(assigns) do
-    ~H(
-      <h1>Daily Boat Rentals</h1>
+    ~H"""
+    <h1>Daily Boat Rentals</h1>
     <div id="filter">
       <form phx-change="filter">
         <div class="filters">
           <select name="type">
-          <%= options_for_select(type_options(), @type) %>
+            <%= options_for_select(type_options(), @type) %>
           </select>
+          <div class="prices">
+            <input type="hidden" name="prices[]" value="" />
+            <%= for price <- ["$", "$$", "$$$"]  do %>
+              <%= price_checkbox(price: price, checked: price in @prices) %>
+            <% end %>
+          </div>
         </div>
       </form>
+
       <div class="boats">
         <%= for boat <- @boats do %>
           <div class="card">
@@ -39,6 +53,15 @@ defmodule LiveViewStudioWeb.BoatsLive do
         <% end %>
       </div>
     </div>
+    """
+  end
+
+  defp price_checkbox(assigns) do
+    assigns = Enum.into(assigns, %{})
+    ~H(
+      <input type="checkbox" name="prices[]" value={@price}
+             id={@price} checked={@checked} />
+      <label for={@price}><%= @price %></label>
     )
   end
 
