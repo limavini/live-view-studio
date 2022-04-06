@@ -1,8 +1,23 @@
 <h1>Volunteer Check-In</h1>
 <div id="checkin">
-  <div>
+
+  <%= f = form_for @changeset, "#", phx_submit: "save" %>
+
+    <div class="field">
+      <%= text_input f, :name, placeholder: "Name", autocomplete: "off" %>
+      <%= error_tag f, :name %>
+    </div>
+
+    <div class="field">
+      <%= telephone_input f, :phone, placeholder: "Phone", autocomplete: "off" %>
+      <%= error_tag f, :phone %>
+    </div>
+
+    <%= submit "Check in", phx_disable_with: "Saving..." %>
+  </form>
+  <div phx-update="prepend" id="volunteers">
     <%= for volunteer <- @volunteers do %>
-      <div class="volunteer <%= if volunteer.checked_out, do: "out" %>">
+      <div id="<%= volunteer.id %>" class="volunteer <%= if volunteer.checked_out, do: "out" %>">
         <div class="name">
           <%= volunteer.name %>
         </div>
