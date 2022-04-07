@@ -37,41 +37,31 @@ defmodule LiveViewStudio.Volunteers do
   """
   def get_volunteer!(id), do: Repo.get!(Volunteer, id)
 
-  @doc """
-  Creates a volunteer.
+  def subscribe do
+    Phoenix.PubSub.subscribe(LiveViewStudio.PubSub, "volunteers")
+  end
 
-  ## Examples
-
-      iex> create_volunteer(%{field: value})
-      {:ok, %Volunteer{}}
-
-      iex> create_volunteer(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def create_volunteer(attrs \\ %{}) do
     %Volunteer{}
     |> Volunteer.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:volunteer_created)
   end
 
-  @doc """
-  Updates a volunteer.
-
-  ## Examples
-
-      iex> update_volunteer(volunteer, %{field: new_value})
-      {:ok, %Volunteer{}}
-
-      iex> update_volunteer(volunteer, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def update_volunteer(%Volunteer{} = volunteer, attrs) do
     volunteer
     |> Volunteer.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:volunteer_updated)
   end
+
+  def broadcast({:ok, volunteer} = result, message) do
+    Phoenix.PubSub.broadcast(LiveViewStudio.PubSub, "volunteers", {message, volunteer})
+
+    result
+  end
+
+  def broadcast({:error, _reason} = result, _message), do: result
 
   @doc """
   Deletes a volunteer.
